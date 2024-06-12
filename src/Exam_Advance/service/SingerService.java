@@ -85,10 +85,22 @@ public class SingerService {
         String singerId = sc.nextLine();
         int indexDelete = getIndexById(Integer.parseInt(singerId));
         if (indexDelete != -1) {
-            for (int i = indexDelete; i < MusicManagement.currentSingerIndex; i++) {
-                MusicManagement.singersArray[i] = MusicManagement.singersArray[i + 1];
+            boolean isExist = false;
+            for (int i = 0; i<MusicManagement.currentSongIndex; i++) {
+                if(MusicManagement.songsArray[i].getSinger().getSingerId()==Integer.parseInt(singerId)){
+                    isExist = true;
+                    break;
+                }
             }
-            MusicManagement.currentSingerIndex--;
+            if (isExist) {
+                System.out.println("Singer with id has song so cant delete ");
+            }else {
+                for (int i = indexDelete; i < MusicManagement.currentSingerIndex; i++) {
+                    MusicManagement.singersArray[i] = MusicManagement.singersArray[i + 1];
+                }
+                MusicManagement.currentSingerIndex--;
+            }
+
         } else {
             System.out.println("There is no book with id to delete" + singerId);
         }
