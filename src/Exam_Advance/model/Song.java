@@ -1,4 +1,6 @@
-package Exam_Advance;
+package Exam_Advance.model;
+import Exam_Advance.run.MusicManagement;
+
 import java.util.Date;
 import java.util.Scanner;
 
@@ -6,7 +8,7 @@ public class Song {
     private String songId;
     private String songName;
     private String description;
-    private String singer;
+    private Singer singer;
     private String songWriter;
     private Date createDate;
     private boolean songStatus;
@@ -37,11 +39,11 @@ public class Song {
         this.description = description;
     }
 
-    public String getSinger() {
+    public Singer getSinger() {
         return singer;
     }
 
-    public void setSinger(String singer) {
+    public void setSinger(Singer singer) {
         this.singer = singer;
     }
 
@@ -80,7 +82,9 @@ public class Song {
     }
 
     public void displayData(){
-
+        System.out.printf("Song ID: %s\nName: %s\nDescription: %s\nSinger: %s   Writer by: %s\nCreate: %s   Status: %b\n",
+                this.songId,this.songName,this.description,this.singer.getSingerName(),this.songWriter,this.createDate,this.songStatus);
+        System.out.println("=====================================================");
     }
 
     public String inputSongId(Scanner sc){
@@ -90,16 +94,16 @@ public class Song {
             String regex = "S\\d{3}";
             if(songId.matches(regex)){
                 boolean isCheck = false;
-                for(int i = 0; i< MusicManagement.currentSongIndex;i++){
+                for(int i = 0; i< MusicManagement.currentSongIndex; i++){
                     if(MusicManagement.songsArray[i].getSongId().equals(songId)){
                         isCheck = true;
                         break;
                     }
                 }
                 if(isCheck){
-                    return songId;
-                }else {
                     System.out.println("The Song ID has been duplicated. Try again!");
+                }else {
+                    return songId;
                 }
             }else {
                 System.out.println("Invalid Song ID(Sxxx). Try again!");
@@ -124,7 +128,7 @@ public class Song {
         return sc.nextLine();
     }
 
-    public String inputSinger(Scanner sc){
+    public Singer inputSinger(Scanner sc){
         System.out.print("Enter Singer Id: ");
         do {
             String singer = sc.nextLine();
@@ -132,17 +136,17 @@ public class Song {
             try {
                 if(Integer.parseInt(singer)>=0){
                     //check if there any singer with that id
-                    boolean isCheck = false;
+                    int index = -1;
                     for (int i = 0; i< MusicManagement.currentSingerIndex;i++){
                         if(MusicManagement.singersArray[i].getSingerId() == Integer.parseInt(singer) ){
-                            isCheck = true;
+                            index = i;
                             break;
                         }
                     }
-                    if(isCheck){
-                        return singer;
+                    if(index>=0){
+                        return MusicManagement.singersArray[index];
                     }else {
-                        System.out.println("There is no singer with that id. Make a new one");
+                        System.out.println("There is no singer with that id. Must make a new one. Try again!");
                     }
                 }else {
                     System.err.println("Please enter a valid Singer. Try again!");

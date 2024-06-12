@@ -1,4 +1,6 @@
-package Exam_Advance;
+package Exam_Advance.model;
+
+import Exam_Advance.run.MusicManagement;
 
 import java.util.Scanner;
 
@@ -70,7 +72,7 @@ public class Singer {
     }
 
     public void displayData(){
-        System.out.printf("Singer ID: %d\nName: %s  Age: %d\nNationality: %s\nGender: %b    Genre: %s",
+        System.out.printf("Singer ID: %d\nName: %s  Age: %d\nNationality: %s\nGender: %b    Genre: %s\n",
                 this.singerId,this.singerName,this.age,this.nationality,this.gender,this.genre);
         System.out.println("=====================================================");
     }
@@ -108,7 +110,7 @@ public class Singer {
     }
 
     public String inputSingerNationality(Scanner sc){
-        System.out.print("Enter Singer Name: ");
+        System.out.print("Enter Singer Nationality: ");
         do {
             String singerNation = sc.nextLine();
             if (!singerNation.isEmpty()) {
