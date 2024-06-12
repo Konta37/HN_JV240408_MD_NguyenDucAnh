@@ -40,9 +40,9 @@ public class MusicManagement {
                     break;
                 case 4:
                     System.exit(0);
-                case 5:
-                    autoInput();
-                    break;
+//                case 5:
+//                    autoInput();
+//                    break;
                 default:
                     System.err.println("Invalid choice");
             }
@@ -50,15 +50,15 @@ public class MusicManagement {
     }
 
 
-    public static void autoInput(){
-        currentSongIndex = 12;
-        currentSingerIndex = 12;
-        Date d = new Date();
-        for (int i = 0; i < currentSingerIndex; i++) {
-            singersArray[i] = new Singer((i+2),"singer"+i,24,"VN",true,"Kpop");
-        }
-        for(int i =0; i<currentSongIndex; i++){
-            songsArray[i]  = new Song("S00"+(i+2),"Song" +i,"hohoho",singersArray[i], "Hihi", d,true );
-        }
-    }
+//    public static void autoInput(){
+//        currentSongIndex = 12;
+//        currentSingerIndex = 12;
+//        Date d = new Date();
+//        for (int i = 0; i < currentSingerIndex; i++) {
+//            singersArray[i] = new Singer((i+2),"singer"+i,24,"VN",true,"Kpop");
+//        }
+//        for(int i =0; i<currentSongIndex; i++){
+//            songsArray[i]  = new Song("S00"+(i+2),"Song" +i,"hohoho",singersArray[i], "Hihi", d,true );
+//        }
+//    }
 }
