@@ -14,6 +14,15 @@ public class Singer {
     //the loai
     public Singer() {}
 
+    public Singer(int id,String singerName, int age, String nationality, boolean gender, String genre) {
+        this.singerName = singerName;
+        this.age = age;
+        this.nationality = nationality;
+        this.gender = gender;
+        this.genre = genre;
+        this.singerId = id;
+    }
+
     public int getSingerId() {
         return singerId;
     }
@@ -69,6 +78,7 @@ public class Singer {
         this.nationality = inputSingerNationality(sc);
         this.gender = inputSingerGender(sc);
         this.genre = inputSingerGenre(sc);
+        System.out.println("=============================");
     }
 
     public void displayData(){

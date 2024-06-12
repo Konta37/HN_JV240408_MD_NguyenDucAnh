@@ -15,6 +15,16 @@ public class Song {
 
     public Song(){}
 
+    public Song(String songId, String songName, String description, Singer singer,String songWriter, Date createDate, boolean songStatus) {
+        this.songId = songId;
+        this.songName = songName;
+        this.description = description;
+        this.singer = singer;
+        this.songStatus = songStatus;
+        this.createDate = createDate;
+        this.songWriter= songWriter;
+    }
+
     public String getSongId() {
         return songId;
     }
@@ -79,6 +89,7 @@ public class Song {
         this.songWriter = inputSongWriter(sc);
         this.createDate = inputCreateDate();
         this.songStatus = inputSongStatus(sc);
+        System.out.println("=============================");
     }
 
     public void displayData(){
@@ -130,6 +141,7 @@ public class Song {
 
     public Singer inputSinger(Scanner sc){
         System.out.print("Enter Singer Id: ");
+        int count =2;
         do {
             String singer = sc.nextLine();
             //check input is number or not
@@ -146,13 +158,22 @@ public class Song {
                     if(index>=0){
                         return MusicManagement.singersArray[index];
                     }else {
+
+                        if(count!=0){
+                            System.err.printf("Please enter a valid Singer. %d times to try again!\n", count);
+                            count--;
+                        }else {
+                            System.out.println("Out of try. Exit program.");
+                            System.exit(0);
+                        }
                         System.out.println("There is no singer with that id. Must make a new one. Try again!");
                     }
                 }else {
-                    System.err.println("Please enter a valid Singer. Try again!");
+                    System.err.println("Error parsing the int value. Please enter a valid Singer Id.");
+
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Error parsing the double value. Please enter a valid Import Price.");
+                System.err.println("Error parsing the int value. Please enter a valid Singer Id.");
             }
         }while (true);
     }
